@@ -1,0 +1,22 @@
+
+If you make a copy of a class that has a constructor that takes arguments,
+make sure you keep at least a stub of it in your copy. It appears that a
+class without a constructor gets a default one created for it , and this
+will not match up.
+
+--
+
+If you make changes to your code that involve removing classes, make sure
+you remove the .class files from old compilations. hyperj sees these and
+uses them.
+
+--
+
+Nested classes don't merge correctly if their containing classes are in
+different packages. The hyperj weaver looks at each copy of the nested
+class as distinct. (This is probably due to the fact that the byte code
+of nested classes is kept in separate files.) Workarounds: (1) completely
+remove the nested class from one package and refer to it by the complete
+name pkg.outerClass.nestedClass where "pkg" is the package where the
+nested class was kept. (2) Change the design to use no nested classes.
+

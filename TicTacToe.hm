@@ -1,0 +1,26 @@
+hypermodule TicTacToe
+
+  hyperslices:
+	UI.text,
+	Data.setup,
+	PlayerRules.n_players,
+	PlayerRules.win;
+    // Enter names of concerns here, separated by commas
+    // and terminated by a semicolon.
+
+  relationships:
+	mergeByName;
+	override 
+	action Data.setup.TTTBoard.markSquare with 
+	action PlayerRules.n_players.TTTBoard.markSquare;
+
+	override
+	action Data.setup.TTTBoard.markSquare with
+	action PlayerRules.win.TTTBoard.markSquare;
+	
+		
+    // Where mergeByName does not work, write override directives:
+    // override action <concern1>.method with <concern2>.method;
+
+end hypermodule;
+
